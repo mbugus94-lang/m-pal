@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { BaseProvider } from './base';
 import { PaymentRequest, PaymentResponse } from './types';
-import { normalizePhone, generateUUID } from '../utils';
+import { normalizePhone, generateUUID } from './utils';
 
 const BASE = {
   sandbox: 'https://sandbox.airtel.africa',

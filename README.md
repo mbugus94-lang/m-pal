@@ -1,75 +1,313 @@
 # M-Pal - African Mobile Money SDK
 
 <p align="center">
-  <strong>🚀 One SDK for all African Mobile Money</strong>
+  <a href="https://www.npmjs.com/package/m-pal">
+    <img src="https://img.shields.io/npm/v/m-pal" alt="npm version">
+  </a>
+  <a href="https://github.com/mbugus94-lang/m-pal/stargazers">
+    <img src="https://img.shields.io/github/stars/mbugus94-lang/m-pal" alt="GitHub stars">
+  </a>
+  <img src="https://img.shields.io/badge/License-MIT-green" alt="License">
+</p>
+
+<p align="center">
+  <strong>🚀 The unified SDK for African mobile money payments</strong><br>
+  M-Pesa • MTN MoMo • Airtel Money — one clean API
 </p>
 
 ---
 
 ## ✨ Features
 
-- **M-Pesa Kenya** - STK Push, B2C, C2B
-- **MTN MoMo** - RequestToPay, Collections
-- **Airtel Money** - Payments, Refunds
-- **Offline Queue** - Survives network failures
-- **TypeScript** - 100% type-safe
+- **M-Pesa Kenya** - STK Push, B2C, C2B, Reversals
+- **MTN MoMo** - RequestToPay, Collections, Transactions
+- **Airtel Money** - Payments, Refunds, B2C
+- **Offline Queue** - Survives network failures, auto-retry
+- **TypeScript** - 100% type-safe with full autocomplete
+- **Zero Dependencies** - Only axios, zod, p-queue
 
 ---
 
-## 📦 Install
+## 📦 Installation
 
 ```bash
 npm install m-pal
+# or
+yarn add m-pal
 ```
 
 ---
 
-## 💻 Quick Start
+## 💻 Usage
+
+### Quick Start
 
 ```javascript
-import { MPal } from 'm-pal';
+const { MPal } = require('m-pal');
 
 const mp = new MPal({
-  provider: 'mpesa-ke',
-  apiKey: 'your-api-key',
-  environment: 'sandbox'
+  environment: 'sandbox',
+  providers: {
+    'mpesa-ke': {
+      consumerKey: process.env.MPESA_CONSUMER_KEY,
+      consumerSecret: process.env.MPESA_CONSUMER_SECRET,
+      shortCode: process.env.MPESA_SHORT_CODE,
+      passkey: process.env.MPESA_PASSKEY,
+      callbackUrl: 'https://your-app.com/mpesa-callback',
+    },
+  },
 });
 
-// Make payment
-const result = await mp.pay({
-  amount: 100,
-  phone: '254712345678',
-  reference: 'ORDER-001'
-});
+// Make a payment
+async function pay() {
+  try {
+    const result = await mp.pay({
+      provider: 'mpesa-ke',
+      amount: 100,
+      phone: '254712345678',
+      reference: 'ORDER-001',
+      description: 'Product payment',
+    });
+    
+    console.log('Payment result:', result);
+    // { success: true, transactionId: '...', status: 'pending', ... }
+  } catch (error) {
+    console.error('Payment failed:', error.message);
+  }
+}
 
-console.log(result);
+pay();
+```
+
+### Check Payment Status
+
+```javascript
+const status = await mp.checkStatus(
+  'ws_CO_191220191020363925',  // Transaction ID
+  'mpesa-ke'                     // Provider
+);
+
+console.log(status);
+// { success: true, status: 'success', ... }
+```
+
+### Reverse a Transaction
+
+```javascript
+const result = await mp.reversal(
+  'transaction_id',
+  'mpesa-ke'
+);
 ```
 
 ---
 
-## 📚 Supported Providers
+## API
 
-| Provider | Countries |
-|---------|-----------|
-| M-Pesa | Kenya, Tanzania, Uganda |
-| MTN MoMo | Ghana, Uganda, Nigeria, Cameroon |
-| Airtel Money | Kenya, Tanzania, Uganda, Nigeria |
+### MPal Class
+
+```javascript
+const mp = new MPal(config)
+```
+
+#### Configuration
+
+```javascript
+const config = {
+  environment: 'sandbox', // or 'production'
+  providers: {
+    'mpesa-ke': { /* M-Pesa config */ },
+    'mtn-momo': { /* MTN config */ },
+    'airtel-money': { /* Airtel config */ },
+  },
+}
+```
+
+#### Methods
+
+| Method | Description |
+|--------|-------------|
+| `mp.pay(request)` | Initiate a payment |
+| `mp.checkStatus(transactionId, provider)` | Check payment status |
+| `mp.reversal(transactionId, provider)` | Reverse a transaction |
+| `mp.getProviders()` | Get list of configured providers |
+| `mp.getQueue()` | Get offline queue |
+
+### Payment Request
+
+```javascript
+const request = {
+  provider: 'mpesa-ke',      // Provider name
+  amount: 100,               // Amount
+  phone: '254712345678',     // Phone number
+  reference: 'ORDER-001',    // Your reference
+  description: 'Payment',    // Optional description
+  currency: 'KES',          // Optional currency (default: KES)
+}
+```
+
+### Payment Response
+
+```javascript
+{
+  success: true,              // Payment success
+  transactionId: '...',       // Your transaction ID
+  status: 'pending',         // pending | success | failed
+  providerReference: '...',   // Provider's reference
+  message: 'Success',         // Response message
+  raw: { /* raw response */ }
+}
+```
 
 ---
 
-## 🔧 Build
+## Examples
+
+### Complete E-commerce Checkout
+
+```javascript
+const { MPal } = require('m-pal');
+
+const mp = new MPal({
+  environment: process.env.NODE_ENV === 'production' ? 'production' : 'sandbox',
+  providers: {
+    'mpesa-ke': {
+      consumerKey: process.env.MPESA_KEY,
+      consumerSecret: process.env.MPESA_SECRET,
+      shortCode: '174379',
+      passkey: process.env.MPESA_PASSKEY,
+      callbackUrl: 'https://yourapp.com/webhook/mpesa',
+    },
+  },
+});
+
+app.post('/checkout', async (req, res) => {
+  const { phone, amount, orderId } = req.body;
+  
+  try {
+    const result = await mp.pay({
+      provider: 'mpesa-ke',
+      amount,
+      phone,
+      reference: orderId,
+      description: `Order ${orderId}`,
+    });
+    
+    res.json({ success: true, transactionId: result.transactionId });
+  } catch (error) {
+    res.status(400).json({ success: false, error: error.message });
+  }
+});
+
+app.post('/webhook/mpesa', (req, res) => {
+  const { Body } = req.body;
+  console.log('Payment callback:', Body);
+  // Update order status in database
+  res.json({ status: 'ok' });
+});
+```
+
+---
+
+## Supported Providers
+
+| Provider | Countries | Status |
+|----------|-----------|--------|
+| **M-Pesa** | Kenya, Tanzania, Uganda | ✅ Stable |
+| **MTN MoMo** | Ghana, Uganda, Nigeria, Cameroon | ✅ Stable |
+| **Airtel Money** | Kenya, Tanzania, Uganda, Nigeria | ✅ Stable |
+
+---
+
+## Environment Variables
+
+Create a `.env` file:
 
 ```bash
-npm install
-npm run build
+# M-Pesa Kenya
+MPESA_CONSUMER_KEY=your_consumer_key
+MPESA_CONSUMER_SECRET=your_consumer_secret
+MPESA_SHORT_CODE=174379
+MPESA_PASSKEY=your_passkey
+
+# MTN MoMo
+MTN_API_KEY=your_api_key
+MTN_SUBSCRIPTION_KEY=your_subscription_key
+
+# Airtel Money
+AIRTEL_API_KEY=your_api_key
 ```
 
 ---
 
-## 📄 License
+## Error Handling
 
-MIT
+```javascript
+try {
+  const result = await mp.pay({ /* ... */ });
+} catch (error) {
+  if (error.message.includes('network')) {
+    // Handle network errors - payment queued for retry
+    console.log('Payment queued for retry');
+  } else if (error.message.includes('insufficient')) {
+    // Handle insufficient funds
+    console.log('Insufficient funds');
+  } else {
+    // Handle other errors
+    console.error('Payment failed:', error.message);
+  }
+}
+```
 
 ---
 
- align="center"><pMade with ❤️ in Africa</p>
+## Offline Queue
+
+The SDK automatically queues failed payments and retries them:
+
+```javascript
+// Get queued payments
+const queue = mp.getQueue();
+const pending = await queue.getPending();
+
+// Process queue manually
+await queue.processQueue();
+```
+
+---
+
+## TypeScript Support
+
+Full TypeScript support with autocompletion:
+
+```typescript
+import { MPal, PaymentRequest, PaymentResponse } from 'm-pal';
+
+const mp = new MPal({ /* config */ });
+
+const result: PaymentResponse = await mp.pay({
+  provider: 'mpesa-ke',
+  amount: 100,
+  phone: '254712345678',
+  reference: 'ORDER-001',
+});
+```
+
+---
+
+## License
+
+MIT License - see [LICENSE](LICENSE)
+
+---
+
+## Author
+
+Made with ❤️ in Africa by [David Gakere](https://github.com/mbugus94-lang)
+
+---
+
+## Support
+
+- 📧 Email: mbugus94@gmail.com
+- 🐛 Issues: [GitHub Issues](https://github.com/mbugus94-lang/m-pal/issues)

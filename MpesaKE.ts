@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { BaseProvider } from './base';
 import { PaymentRequest, PaymentResponse } from './types';
-import { normalizePhone, generateTimestamp, generateMpesaPassword } from '../utils';
+import { normalizePhone, generateTimestamp, generateMpesaPassword } from './utils';
 
 const BASE = {
   sandbox: 'https://sandbox.safaricom.co.ke',
