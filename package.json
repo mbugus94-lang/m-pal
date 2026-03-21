@@ -13,9 +13,17 @@
   "keywords": ["africa", "mpesa", "mtn-momo", "airtel-money", "fintech", "kenya", "payments", "mobile-money"],
   "author": "Made in Nairobi 🇰🇪 by devs for Africa",
   "license": "MIT",
-  "repository": "https://github.com/yourusername/afripay-sdk",
-  "homepage": "https://github.com/yourusername/afripay-sdk#readme",
-  "bugs": "https://github.com/yourusername/afripay-sdk/issues",
+  "repository": "https://github.com/mbugus94-lang/m-pal",
+  "homepage": "https://github.com/mbugus94-lang/m-pal#readme",
+  "bugs": "https://github.com/mbugus94-lang/m-pal/issues",
+  "files": [
+    "dist/",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "dependencies": {
     "axios": "^1.7.7",
     "dotenv": "^16.4.5",
