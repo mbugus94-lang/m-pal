@@ -8,14 +8,20 @@
     "build": "tsc",
     "dev": "ts-node src/examples/stk-push.ts",
     "test": "jest",
-    "lint": "tsc --noEmit"
+    "lint": "tsc --noEmit && eslint . --ext .ts",
+    "prepare": "npm run build"
   },
   "keywords": ["africa", "mpesa", "mtn-momo", "airtel-money", "fintech", "kenya", "payments", "mobile-money"],
   "author": "Made in Nairobi 🇰🇪 by devs for Africa",
   "license": "MIT",
-  "repository": "https://github.com/mbugus94-lang/m-pal",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mbugus94-lang/m-pal.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mbugus94-lang/m-pal/issues"
+  },
   "homepage": "https://github.com/mbugus94-lang/m-pal#readme",
-  "bugs": "https://github.com/mbugus94-lang/m-pal/issues",
   "files": [
     "dist/",
     "README.md",
