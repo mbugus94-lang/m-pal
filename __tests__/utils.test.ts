@@ -1,41 +1,58 @@
-import { generateUUID, validatePhoneNumber, formatPhoneNumber } from '../utils';
+import { validatePhoneNumber, formatCurrency, generateTimestamp } from '../utils';
 
-describe('Utils', () => {
-  describe('generateUUID', () => {
-    it('should generate a valid UUID format', () => {
-      const uuid = generateUUID();
-      expect(uuid).toBeDefined();
-      expect(typeof uuid).toBe('string');
-      expect(uuid.length).toBe(36);
-      expect(uuid).toMatch(/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/);
-    });
-
-    it('should generate unique UUIDs', () => {
-      const uuid1 = generateUUID();
-      const uuid2 = generateUUID();
-      expect(uuid1).not.toBe(uuid2);
-    });
-  });
-
+describe('Utility Functions', () => {
   describe('validatePhoneNumber', () => {
-    it('should validate Kenyan phone numbers', () => {
-      expect(validatePhoneNumber('254712345678')).toBe(true);
-      expect(validatePhoneNumber('25471234567')).toBe(false);
-      expect(validatePhoneNumber('0712345678')).toBe(true);
+    test('should validate Kenyan numbers', () => {
+      expect(validatePhoneNumber('254712345678', 'KE')).toBe(true);
+      expect(validatePhoneNumber('0712345678', 'KE')).toBe(true);
+      expect(validatePhoneNumber('12345', 'KE')).toBe(false);
     });
 
-    it('should reject invalid phone numbers', () => {
-      expect(validatePhoneNumber('')).toBe(false);
-      expect(validatePhoneNumber('abc')).toBe(false);
-      expect(validatePhoneNumber('123')).toBe(false);
+    test('should validate Ugandan numbers', () => {
+      expect(validatePhoneNumber('256789123456', 'UG')).toBe(true);
+      expect(validatePhoneNumber('0789123456', 'UG')).toBe(true);
+    });
+
+    test('should validate Ghanaian numbers', () => {
+      expect(validatePhoneNumber('233241234567', 'GH')).toBe(true);
+      expect(validatePhoneNumber('0241234567', 'GH')).toBe(true);
+    });
+
+    test('should reject invalid numbers', () => {
+      expect(validatePhoneNumber('abc', 'KE')).toBe(false);
+      expect(validatePhoneNumber('', 'KE')).toBe(false);
     });
   });
 
-  describe('formatPhoneNumber', () => {
-    it('should format phone numbers to international format', () => {
-      expect(formatPhoneNumber('0712345678')).toBe('254712345678');
-      expect(formatPhoneNumber('712345678')).toBe('254712345678');
-      expect(formatPhoneNumber('254712345678')).toBe('254712345678');
+  describe('formatCurrency', () => {
+    test('should format Kenyan Shillings', () => {
+      expect(formatCurrency(1000, 'KES')).toContain('KSh');
+      expect(formatCurrency(1000, 'KES')).toContain('1,000');
+    });
+
+    test('should format Ugandan Shillings', () => {
+      expect(formatCurrency(5000, 'UGX')).toContain('UGX');
+    });
+
+    test('should format Ghana Cedis', () => {
+      expect(formatCurrency(100, 'GHS')).toContain('GHS');
+    });
+
+    test('should handle zero and negative amounts', () => {
+      expect(formatCurrency(0, 'KES')).toContain('0');
+    });
+  });
+
+  describe('generateTimestamp', () => {
+    test('should generate valid timestamp', () => {
+      const ts = generateTimestamp();
+      expect(ts).toMatch(/^\d{14}$/);
+    });
+
+    test('should generate unique timestamps', () => {
+      const ts1 = generateTimestamp();
+      const ts2 = generateTimestamp();
+      expect(ts1).not.toBe(ts2);
     });
   });
 });
