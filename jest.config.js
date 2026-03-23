@@ -6,6 +6,9 @@ module.exports = {
   transform: {
     '^.+\\.ts$': 'ts-jest',
   },
+  moduleNameMapper: {
+    '^p-queue$': '<rootDir>/__mocks__/p-queue.ts',
+  },
   collectCoverageFrom: [
     '*.ts',
     '!jest.config.js',
