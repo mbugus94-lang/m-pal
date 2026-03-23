@@ -26,7 +26,22 @@ export function generateUUID(): string {
   return crypto.randomUUID();
 }
 
-export function validatePhoneNumber(phone: string): boolean {
-  const normalized = normalizePhone(phone);
-  return /^254\d{9}$/.test(normalized);
+export function validatePhoneNumber(phone: string, country: string = 'KE'): boolean {
+  const normalized = normalizePhone(phone, country);
+  return /^\d{12}$/.test(normalized);
+}
+
+export function formatCurrency(amount: number, currency: string): string {
+  const symbols: Record<string, string> = {
+    KES: 'KSh',
+    UGX: 'UGX',
+    GHS: 'GHS',
+    NGN: '₦',
+    ZAR: 'R',
+    TZS: 'TZS',
+    XOF: 'CFA',
+  };
+  const symbol = symbols[currency] || currency;
+  const formatted = amount.toLocaleString('en-US');
+  return `${symbol}${formatted}`;
 }
