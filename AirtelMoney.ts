@@ -8,10 +8,11 @@ const BASE = {
   production: 'https://api.airtel.africa',
 };
 
-interface AirtelMoneyConfig {
+export interface AirtelMoneyConfig {
   environment: 'sandbox' | 'production';
-  clientId: string;
-  clientSecret: string;
+  clientId?: string;
+  clientSecret?: string;
+  apiKey?: string;
   callbackUrl: string;
 }
 
@@ -39,12 +40,15 @@ export class AirtelMoney extends BaseProvider {
       return this.accessToken;
     }
 
+    const clientId = this.config.clientId || this.config.apiKey || '';
+    const clientSecret = this.config.clientSecret || this.config.apiKey || '';
+
     try {
       const response = await axios.post(
         `${BASE[this.config.environment]}/auth/oauth2/token`,
         {
-          client_id: this.config.clientId,
-          client_secret: this.config.clientSecret,
+          client_id: clientId,
+          client_secret: clientSecret,
           grant_type: 'client_credentials',
         },
         {

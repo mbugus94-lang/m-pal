@@ -8,23 +8,33 @@ const BASE = {
   production: 'https://api.safaricom.co.ke',
 };
 
-interface MpesaKEConfig {
+export interface MPesaConfig {
   environment: 'sandbox' | 'production';
   consumerKey: string;
   consumerSecret: string;
   shortCode: string;
   passkey: string;
-  callbackUrl: string;
+  callbackUrl?: string;
 }
 
 export class MpesaKE extends BaseProvider {
-  private config: MpesaKEConfig;
+  private config: MPesaConfig;
   private accessToken: string = '';
   private tokenExpiry: number = 0;
 
-  constructor(config: MpesaKEConfig) {
+  constructor(config: MPesaConfig) {
     super();
+    if (!config.consumerKey || !config.consumerSecret || !config.passkey || !config.shortCode) {
+      throw new Error('Missing required M-Pesa configuration');
+    }
     this.config = config;
+  }
+
+  protected getAuthHeaders(): { Authorization: string } {
+    const auth = Buffer.from(
+      `${this.config.consumerKey}:${this.config.consumerSecret}`
+    ).toString('base64');
+    return { Authorization: `Bearer ${auth}` };
   }
 
   generateTimestamp(): string {
@@ -93,7 +103,7 @@ export class MpesaKE extends BaseProvider {
           PartyA: phone,
           PartyB: this.config.shortCode,
           PhoneNumber: phone,
-          CallBackURL: this.config.callbackUrl,
+          CallBackURL: this.config.callbackUrl || 'https://example.com/callback',
           AccountReference: request.reference,
           TransactionDesc: request.description || 'Payment',
         },
@@ -177,8 +187,8 @@ export class MpesaKE extends BaseProvider {
           Amount: '1',
           ReceiverParty: this.config.shortCode,
           RecieverIdentifierType: '4',
-          ResultURL: this.config.callbackUrl,
-          QueueTimeOutURL: this.config.callbackUrl,
+          ResultURL: this.config.callbackUrl || 'https://example.com/callback',
+          QueueTimeOutURL: this.config.callbackUrl || 'https://example.com/callback',
           Remarks: 'Reversal',
           Occasion: 'Reversal',
         },
