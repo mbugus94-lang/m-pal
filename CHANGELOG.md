@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.2] - 2026-03-23
+
+### Changed
+- Updated @types/node to ^22.13.13
+- Updated eslint to ^9.23.0
+- Updated @typescript-eslint packages to ^8.28.0
+- Updated dotenv to ^17.3.1
+
 ## [1.0.1] - 2026-03-22
 
 ### Security
