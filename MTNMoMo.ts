@@ -24,6 +24,10 @@ export class MTNMoMo extends BaseProvider {
     this.config = config;
   }
 
+  generateUUID(): string {
+    return generateUUID();
+  }
+
   async pay(request: PaymentRequest): Promise<PaymentResponse> {
     if (request.provider !== 'mtn-momo') {
       throw new Error('Invalid provider for MTNMoMo');

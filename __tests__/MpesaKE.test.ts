@@ -40,6 +40,8 @@ describe('MpesaKE', () => {
           amount: 100,
           phone: '254712345678',
           reference: 'TEST-001',
+          description: 'Test payment',
+          currency: 'KES',
         })
       ).rejects.toBeDefined();
     });
@@ -51,6 +53,8 @@ describe('MpesaKE', () => {
           amount: 100,
           phone: '123',
           reference: 'TEST-001',
+          description: 'Test payment',
+          currency: 'KES',
         })
       ).rejects.toThrow();
     });
@@ -62,6 +66,8 @@ describe('MpesaKE', () => {
           amount: 0,
           phone: '254712345678',
           reference: 'TEST-001',
+          description: 'Test payment',
+          currency: 'KES',
         })
       ).rejects.toThrow();
     });

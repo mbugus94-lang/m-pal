@@ -25,6 +25,14 @@ export class AirtelMoney extends BaseProvider {
     this.config = config;
   }
 
+  private getBaseUrl(): string {
+    return BASE[this.config.environment];
+  }
+
+  private generateReference(): string {
+    return generateUUID();
+  }
+
   private async getAccessToken(): Promise<string> {
     const now = Date.now();
     if (this.accessToken.length > 0 && this.tokenExpiry > now) {

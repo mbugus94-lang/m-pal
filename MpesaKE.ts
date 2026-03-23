@@ -27,6 +27,18 @@ export class MpesaKE extends BaseProvider {
     this.config = config;
   }
 
+  generateTimestamp(): string {
+    return generateTimestamp();
+  }
+
+  generatePassword(timestamp: string): string {
+    return generateMpesaPassword(
+      this.config.shortCode,
+      this.config.passkey,
+      timestamp
+    );
+  }
+
   private async getAccessToken(): Promise<string> {
     const now = Date.now();
     if (this.accessToken.length > 0 && this.tokenExpiry > now) {
