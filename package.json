@@ -6,9 +6,11 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
-    "dev": "ts-node src/examples/stk-push.ts",
-    "test": "jest",
-    "lint": "tsc --noEmit && eslint . --ext .ts",
+    "test": "jest --passWithNoTests",
+    "test:coverage": "jest --coverage",
+    "lint": "eslint . --ext .ts",
+    "format": "prettier --write \"**/*.ts\"",
+    "docs:generate": "typedoc --out docs src",
     "prepare": "npm run build"
   },
   "keywords": ["africa", "mpesa", "mtn-momo", "airtel-money", "fintech", "kenya", "payments", "mobile-money"],
