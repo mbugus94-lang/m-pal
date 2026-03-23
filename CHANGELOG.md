@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.3] - 2026-03-24
+
+### Changed
+- Version bump to 1.0.3 for maintenance release
+- Updated devDependencies to latest stable versions:
+  - @types/node: ^22.13.13 → ^25.5.0
+  - eslint: ^9.23.0 → ^10.1.0
+  - jest: ^29.7.0 → ^30.3.0
+  - prettier: ^3.3.3 → ^3.5.3
+  - ts-jest: ^29.2.6 → ^29.3.0
+
 ## [1.0.2] - 2026-03-23
 
 ### Changed
