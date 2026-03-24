@@ -7,8 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Added
-- Initial repository improvements (CI/CD, templates, documentation)
+### Fixed
+- Corrected dotenv version from ^17.3.1 (non-existent) to ^16.4.7
 
 ## [1.0.0] - 2026-03-21
 
