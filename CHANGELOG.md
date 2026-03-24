@@ -7,8 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Fixed
-- Corrected dotenv version from ^17.3.1 (non-existent) to ^16.4.7
+## [1.0.4] - 2026-03-24
+
+### Changed
+- Updated axios from 1.8.4 to 1.13.6 for improved security and performance
+- Updated p-queue from 8.1.0 to 9.1.0 for better concurrency handling
+- Updated zod from 4.3.6 to 4.3.8 for latest validation improvements
+- dotenv remains at 16.4.7 (latest stable version)
 
 ## [1.0.3] - 2026-03-24
 
