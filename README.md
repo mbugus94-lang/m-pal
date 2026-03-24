@@ -2,14 +2,14 @@
 
 <p align="center">
   <a href="https://www.npmjs.com/package/m-pal">
-    <img src="https://img.shields.io/npm/v/m-pal" alt="npm version">
+    <img src="[[Image 1: unavailable (https://img.shields.io/npm/v/m-pal)]]" alt="npm version">
   </a>
   <a href="https://github.com/mbugus94-lang/m-pal/stargazers">
-    <img src="https://img.shields.io/github/stars/mbugus94-lang/m-pal" alt="GitHub stars">
+    <img src="[[Image 2: unavailable (https://img.shields.io/github/stars/mbugus94-lang/m-pal)]]" alt="GitHub stars">
   </a>
   <img src="https://img.shields.io/badge/License-MIT-green" alt="License">
   <img src="https://img.shields.io/badge/Node.js-18+-yellow?logo=node.js" alt="Node.js">
-  <img src="https://img.shields.io/github/actions/workflow/status/mbugus94-lang/m-pal/ci.yml" alt="CI Status">
+  <img src="[[Image 3: unavailable (https://img.shields.io/github/actions/workflow/status/mbugus94-lang/m-pal/ci.yml)]]" alt="CI Status">
   <img src="https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white" alt="TypeScript">
 </p>
 
@@ -21,25 +21,6 @@
 ---
 
 ## ✨ Features
-
-## Installation
-
-1. Clone the repository:
-```bash
-git clone https://github.com/mbugus94-lang/m-pal.git
-cd m-pal
-```
-
-2. Install dependencies:
-```bash
-npm install
-```
-
-3. Copy the environment variables file:
-```bash
-cp .env.example .env
-# Edit .env with your configuration
-```
 
 - **M-Pesa Kenya** - STK Push, B2C, C2B, Reversals
 - **MTN MoMo** - RequestToPay, Collections, Transactions
@@ -60,9 +41,7 @@ yarn add m-pal
 
 ---
 
-## 💻 Usage
-
-### Quick Start
+## 💻 Quick Start
 
 ```javascript
 const { MPal } = require('m-pal');
@@ -101,30 +80,40 @@ async function pay() {
 pay();
 ```
 
-### Check Payment Status
+---
 
-```javascript
-const status = await mp.checkStatus(
-  'ws_CO_191220191020363925',  // Transaction ID
-  'mpesa-ke'                     // Provider
-);
+## 🛠️ Development Setup
 
-console.log(status);
-// { success: true, status: 'success', ... }
+1. Clone the repository:
+```bash
+git clone https://github.com/mbugus94-lang/m-pal.git
+cd m-pal
 ```
 
-### Reverse a Transaction
+2. Install dependencies:
+```bash
+npm install
+```
 
-```javascript
-const result = await mp.reversal(
-  'transaction_id',
-  'mpesa-ke'
-);
+3. Copy the environment variables file:
+```bash
+cp .env.example .env
+# Edit .env with your configuration
+```
+
+4. Build the project:
+```bash
+npm run build
+```
+
+5. Run tests:
+```bash
+npm test
 ```
 
 ---
 
-## API
+## 📚 API Reference
 
 ### MPal Class
 
@@ -183,9 +172,32 @@ const request = {
 
 ---
 
-## Examples
+## 🔍 Check Payment Status
 
-### Complete E-commerce Checkout
+```javascript
+const status = await mp.checkStatus(
+  'ws_CO_191220191020363925',  // Transaction ID
+  'mpesa-ke'                     // Provider
+);
+
+console.log(status);
+// { success: true, status: 'success', ... }
+```
+
+---
+
+## ↩️ Reverse a Transaction
+
+```javascript
+const result = await mp.reversal(
+  'transaction_id',
+  'mpesa-ke'
+);
+```
+
+---
+
+## 🛒 Complete E-commerce Example
 
 ```javascript
 const { MPal } = require('m-pal');
@@ -231,7 +243,7 @@ app.post('/webhook/mpesa', (req, res) => {
 
 ---
 
-## Supported Providers
+## 🌍 Supported Providers
 
 | Provider | Countries | Status |
 |----------|-----------|--------|
@@ -241,7 +253,7 @@ app.post('/webhook/mpesa', (req, res) => {
 
 ---
 
-## Environment Variables
+## ⚙️ Environment Variables
 
 Create a `.env` file:
 
@@ -262,7 +274,7 @@ AIRTEL_API_KEY=your_api_key
 
 ---
 
-## Error Handling
+## 🐛 Error Handling
 
 ```javascript
 try {
@@ -283,7 +295,7 @@ try {
 
 ---
 
-## Offline Queue
+## 📤 Offline Queue
 
 The SDK automatically queues failed payments and retries them:
 
@@ -298,7 +310,7 @@ await queue.processQueue();
 
 ---
 
-## TypeScript Support
+## 🔷 TypeScript Support
 
 Full TypeScript support with autocompletion:
 
@@ -331,19 +343,46 @@ The workflow runs on every push and pull request to ensure code quality.
 
 ---
 
-## License
+## 🐛 Troubleshooting
+
+### Common Issues
+
+**Module not found errors:**
+```bash
+npm run build  # Ensure the project is built
+```
+
+**TypeScript compilation errors:**
+```bash
+npm run lint:fix  # Fix auto-fixable issues
+```
+
+**Test failures:**
+```bash
+# Run tests with verbose output
+npm test -- --verbose
+```
+
+**Provider API errors:**
+- Verify your environment variables are correct
+- Check that your callback URL is publicly accessible
+- Ensure your provider credentials are for the correct environment (sandbox vs production)
+
+---
+
+## 📄 License
 
 MIT License - see [LICENSE](LICENSE)
 
 ---
 
-## Author
+## 👤 Author
 
 Made with ❤️ in Africa by [David Gakere](https://github.com/mbugus94-lang)
 
 ---
 
-## Support
+## 💬 Support
 
 - 📧 Email: mbugus94@gmail.com
 - 🐛 Issues: [GitHub Issues](https://github.com/mbugus94-lang/m-pal/issues)
