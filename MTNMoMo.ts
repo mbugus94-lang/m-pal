@@ -8,12 +8,13 @@ const BASE = {
   production: 'https://api.mtn.com',
 };
 
-interface MTNMoMoConfig {
+export interface MTNMoMoConfig {
   environment: 'sandbox' | 'production';
+  apiUser?: string;
   apiKey: string;
-  primaryKey: string;
+  primaryKey?: string;
   subscriptionKey: string;
-  callbackUrl: string;
+  callbackUrl?: string;
 }
 
 export class MTNMoMo extends BaseProvider {
@@ -22,6 +23,18 @@ export class MTNMoMo extends BaseProvider {
   constructor(config: MTNMoMoConfig) {
     super();
     this.config = config;
+  }
+
+  protected getBaseUrl(): string {
+    return BASE[this.config.environment];
+  }
+
+  protected formatPhoneNumber(phone: string): string {
+    return normalizePhone(phone);
+  }
+
+  generateUUID(): string {
+    return generateUUID();
   }
 
   async pay(request: PaymentRequest): Promise<PaymentResponse> {

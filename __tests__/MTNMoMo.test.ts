@@ -7,6 +7,7 @@ describe('MTNMoMo', () => {
     mtn = new MTNMoMo({
       environment: 'sandbox',
       apiKey: 'test-api-key',
+      primaryKey: 'test-primary-key',
       subscriptionKey: 'test-sub-key',
       callbackUrl: 'https://test.com/callback',
     });
@@ -21,6 +22,7 @@ describe('MTNMoMo', () => {
       const prodMtn = new MTNMoMo({
         environment: 'production',
         apiKey: 'prod-api-key',
+        primaryKey: 'prod-primary-key',
         subscriptionKey: 'prod-sub-key',
         callbackUrl: 'https://prod.com/callback',
       });
@@ -36,6 +38,8 @@ describe('MTNMoMo', () => {
           amount: 100,
           phone: '233123456789',
           reference: 'TEST-001',
+          description: 'Test payment',
+          currency: 'XOF',
         })
       ).rejects.toBeDefined();
     });
@@ -47,6 +51,8 @@ describe('MTNMoMo', () => {
           amount: 100,
           phone: '123',
           reference: 'TEST-001',
+          description: 'Test payment',
+          currency: 'XOF',
         })
       ).rejects.toThrow();
     });

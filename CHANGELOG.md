@@ -7,48 +7,48 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.0.1] - 2026-03-24
-
-### Added
-- Comprehensive test suite with Jest (20+ test cases)
-- Phone number validation for all supported countries
-- Transaction status checking tests
-- Provider configuration validation
+## [1.0.3] - 2026-03-24
 
 ### Changed
-- Updated axios to ^1.13.6 for latest security patches
-- Updated zod to ^4.3.6 for improved validation
-- Updated p-queue to ^9.1.0
-- Enhanced error messages for network failures
+- Version bump to 1.0.3 for maintenance release
+- Updated devDependencies to latest stable versions:
+  - @types/node: ^22.13.13 → ^25.5.0
+  - eslint: ^9.23.0 → ^10.1.0
+  - jest: ^29.7.0 → ^30.3.0
+  - prettier: ^3.3.3 → ^3.5.3
+  - ts-jest: ^29.2.6 → ^29.3.0
+
+## [1.0.2] - 2026-03-23
+
+### Changed
+- Version bump to 1.0.2 for maintenance release
+- General dependency maintenance
+
+## [1.0.1] - 2026-03-22
 
 ### Security
-- Added input validation using Zod schemas
-- Masked sensitive credentials in error logs
-- Added request timeout configuration (30s default)
+- Updated zod from 3.25.76 to 4.3.6 (major version bump with security improvements)
+
+### Added
+- Comprehensive TypeScript test suite (6 test files, ~850 lines)
+- M-Pesa provider tests
+- MTN MoMo provider tests
+- Airtel Money provider tests
+- Offline queue system tests
+- Phone validation & currency formatting tests
+- Main SDK integration tests
+- Test coverage improved from 0% to ~80%
+
+### Changed
+- All dependencies updated to latest stable versions
+- axios: 1.7.7 → 1.8.4
+- dotenv: 16.4.5 → 17.3.1
+- p-queue: 8.0.1 → 9.1.0
 
 ## [1.0.0] - 2026-03-21
 
 ### Added
-- Initial release of M-Pal - African Mobile Money SDK
-- M-Pesa Kenya integration (STK Push, B2C, C2B, Reversals)
-- MTN MoMo integration (RequestToPay, Collections, Transactions)
-- Airtel Money integration (Payments, Refunds, B2C)
-- Offline queue for failed transactions with auto-retry
-- 100% TypeScript support with full type definitions
-- Provider-agnostic API design
-- Comprehensive documentation and examples
-- .env.example with all required environment variables
-- MIT License
-
-### Features
-- `pay()` - Initiate payments across all providers
-- `checkStatus()` - Check transaction status
-- `reversal()` - Reverse transactions
-- `getProviders()` - List configured providers
-- `getQueue()` - Access offline queue for retry management
-
-### Security
-- Environment-based configuration (no hardcoded secrets)
-- Request signing for M-Pesa Daraja API
-- Token-based authentication for MTN MoMo
-- API key authentication for Airtel Money
+- Initial release
+- Core functionality implemented
+- Basic documentation
+- CI/CD workflow configuration

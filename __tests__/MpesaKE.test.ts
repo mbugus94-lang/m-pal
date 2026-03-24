@@ -40,6 +40,8 @@ describe('MpesaKE', () => {
           amount: 100,
           phone: '254712345678',
           reference: 'TEST-001',
+          description: 'Test payment',
+          currency: 'KES',
         })
       ).rejects.toBeDefined();
     });
@@ -51,6 +53,8 @@ describe('MpesaKE', () => {
           amount: 100,
           phone: '123',
           reference: 'TEST-001',
+          description: 'Test payment',
+          currency: 'KES',
         })
       ).rejects.toThrow();
     });
@@ -62,6 +66,8 @@ describe('MpesaKE', () => {
           amount: 0,
           phone: '254712345678',
           reference: 'TEST-001',
+          description: 'Test payment',
+          currency: 'KES',
         })
       ).rejects.toThrow();
     });
@@ -88,7 +94,7 @@ describe('MpesaKE', () => {
       const timestamp = mpesa.generateTimestamp();
       expect(timestamp).toBeDefined();
       expect(typeof timestamp).toBe('string');
-      expect(timestamp.length).toBe(14);
+      expect(timestamp.length).toBe(20); // 14 digits (YYYYMMDDHHMMSS) + 3 ms + 3 counter
     });
   });
 

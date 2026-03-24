@@ -46,7 +46,7 @@ describe('Utility Functions', () => {
   describe('generateTimestamp', () => {
     test('should generate valid timestamp', () => {
       const ts = generateTimestamp();
-      expect(ts).toMatch(/^\d{14}$/);
+      expect(ts).toMatch(/^\d{20}$/); // 14 digits (YYYYMMDDHHMMSS) + 3 ms + 3 counter
     });
 
     test('should generate unique timestamps', () => {

@@ -295,6 +295,20 @@ const result: PaymentResponse = await mp.pay({
 
 ---
 
+## 🔧 CI/CD
+
+This project uses GitHub Actions for continuous integration:
+
+- **Node.js 18.x & 20.x** testing
+- **Linting** with ESLint
+- **Testing** with Jest and coverage reporting
+- **TypeScript** build verification
+- **Code formatting** with Prettier
+
+The workflow runs on every push and pull request to ensure code quality.
+
+---
+
 ## License
 
 MIT License - see [LICENSE](LICENSE)
