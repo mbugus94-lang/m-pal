@@ -11,6 +11,7 @@
   <img src="https://img.shields.io/badge/Node.js-18+-yellow?logo=node.js" alt="Node.js">
   <img src="[[Image 3: unavailable (https://img.shields.io/github/actions/workflow/status/mbugus94-lang/m-pal/ci.yml)]]" alt="CI Status">
   <img src="https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white" alt="TypeScript">
+  <img src="https://img.shields.io/badge/Version-1.0.5-blue" alt="Version">
 </p>
 
 <p align="center">

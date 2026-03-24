@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.5] - 2026-03-24
+
+### Changed
+- Updated version to 1.0.5
+- Updated zod from 3.23.8 to 3.25.76 for latest bug fixes
+- All dependencies remain current and secure
+
+### Security
+- zod update includes improved validation security
+
 ## [1.0.4] - 2026-03-24
 
 ### Changed

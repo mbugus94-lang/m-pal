@@ -1,6 +1,6 @@
 {
   "name": "m-pal",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "The unified SDK for African mobile money payments. M-Pesa, MTN MoMo, Airtel Money — one clean API.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -42,7 +42,7 @@
     "axios": "^1.13.6",
     "dotenv": "^16.4.7",
     "p-queue": "^9.1.0",
-    "zod": "^3.23.8"
+    "zod": "^3.25.76"
   },
   "devDependencies": {
     "@types/jest": "^29.5.14",
