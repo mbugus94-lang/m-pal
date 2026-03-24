@@ -8,6 +8,9 @@
     <img src="https://img.shields.io/github/stars/mbugus94-lang/m-pal" alt="GitHub stars">
   </a>
   <img src="https://img.shields.io/badge/License-MIT-green" alt="License">
+  <img src="https://img.shields.io/badge/Node.js-18+-yellow?logo=node.js" alt="Node.js">
+  <img src="https://img.shields.io/github/actions/workflow/status/mbugus94-lang/m-pal/ci.yml" alt="CI Status">
+  <img src="https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white" alt="TypeScript">
 </p>
 
 <p align="center">
