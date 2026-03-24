@@ -85,7 +85,7 @@ describe('M-Pal - Validation Tests', () => {
   describe('Config Schema', () => {
     const configSchema = z.object({
       environment: z.enum(['sandbox', 'production']),
-      providers: z.record(z.object({
+      providers: z.record(z.string(), z.object({
         consumerKey: z.string().optional(),
         consumerSecret: z.string().optional(),
         apiKey: z.string().optional(),
