@@ -22,6 +22,25 @@
 
 ## ✨ Features
 
+## Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/mbugus94-lang/m-pal.git
+cd m-pal
+```
+
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Copy the environment variables file:
+```bash
+cp .env.example .env
+# Edit .env with your configuration
+```
+
 - **M-Pesa Kenya** - STK Push, B2C, C2B, Reversals
 - **MTN MoMo** - RequestToPay, Collections, Transactions
 - **Airtel Money** - Payments, Refunds, B2C
