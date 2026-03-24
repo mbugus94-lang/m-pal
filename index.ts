@@ -6,19 +6,19 @@ import { BaseProvider } from './base';
 import { OfflineQueue, QueuedTask } from './queue';
 import { generateUUID } from './utils';
 
-export interface AfriPayConfig {
+export interface MPalConfig {
   environment: 'sandbox' | 'production';
   providers: {
     [key: string]: any;
   };
 }
 
-export class AfriPay {
-  private config: AfriPayConfig;
+export class MPal {
+  private config: MPalConfig;
   private providers: Map<string, BaseProvider> = new Map();
   private queue: OfflineQueue;
 
-  constructor(config: AfriPayConfig) {
+  constructor(config: MPalConfig) {
     this.config = config;
     this.queue = new OfflineQueue();
     this.initializeProviders();
@@ -106,6 +106,10 @@ export class AfriPay {
     return Array.from(this.providers.keys());
   }
 }
+
+// Backward compatibility alias
+export const AfriPay = MPal;
+export type AfriPayConfig = MPalConfig;
 
 export { PaymentRequest, PaymentResponse, ProviderConfig };
 export { MpesaKE, MTNMoMo, AirtelMoney };

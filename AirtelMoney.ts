@@ -8,10 +8,11 @@ const BASE = {
   production: 'https://api.airtel.africa',
 };
 
-interface AirtelMoneyConfig {
+export interface AirtelMoneyConfig {
   environment: 'sandbox' | 'production';
-  clientId: string;
-  clientSecret: string;
+  clientId?: string;
+  clientSecret?: string;
+  apiKey?: string;
   callbackUrl: string;
 }
 
@@ -25,18 +26,29 @@ export class AirtelMoney extends BaseProvider {
     this.config = config;
   }
 
+  private getBaseUrl(): string {
+    return BASE[this.config.environment];
+  }
+
+  private generateReference(): string {
+    return generateUUID();
+  }
+
   private async getAccessToken(): Promise<string> {
     const now = Date.now();
     if (this.accessToken.length > 0 && this.tokenExpiry > now) {
       return this.accessToken;
     }
 
+    const clientId = this.config.clientId || this.config.apiKey || '';
+    const clientSecret = this.config.clientSecret || this.config.apiKey || '';
+
     try {
       const response = await axios.post(
         `${BASE[this.config.environment]}/auth/oauth2/token`,
         {
-          client_id: this.config.clientId,
-          client_secret: this.config.clientSecret,
+          client_id: clientId,
+          client_secret: clientSecret,
           grant_type: 'client_credentials',
         },
         {

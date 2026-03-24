@@ -1,79 +1,134 @@
-# Contributing Guidelines
+# Contributing to M-Pal
 
-Thank you for your interest in contributing to this project! We welcome contributions from the community.
+Thank you for your interest in contributing to M-Pal, the African Mobile Money SDK!
 
-## How to Contribute
+## 🌍 Our Mission
 
-### Reporting Bugs
+M-Pal aims to make mobile money integration easy for developers across Africa. We welcome contributions that help us achieve this goal.
 
-Before creating a bug report, please check the existing issues to see if the problem has already been reported. When creating a bug report, please include:
+## 🚀 Getting Started
 
-- A clear, descriptive title
-- Steps to reproduce the issue
-- Expected behavior vs actual behavior
-- Your environment (OS, Node.js/Python version, etc.)
-- Any error messages or screenshots
+### Prerequisites
 
-### Suggesting Enhancements
+- Node.js 18 or higher
+- TypeScript knowledge
+- Understanding of mobile money APIs (M-Pesa, MTN MoMo, Airtel Money)
 
-Enhancement suggestions are welcome! Please provide:
+### Setup
 
-- A clear description of the feature
-- Why it would be useful
-- Possible implementation approach (if you have ideas)
+1. **Fork the repository**
+2. **Clone your fork**:
+   ```bash
+   git clone https://github.com/your-username/m-pal.git
+   cd m-pal
+   ```
+3. **Install dependencies**:
+   ```bash
+   npm install
+   ```
+4. **Build the project**:
+   ```bash
+   npm run build
+   ```
 
-### Pull Requests
+## 📝 Development Guidelines
 
-1. Fork the repository
-2. Create a new branch for your feature (`git checkout -b feature/amazing-feature`)
-3. Make your changes
-4. Run tests (if available)
-5. Commit your changes (`git commit -m 'Add amazing feature'`)
-6. Push to your fork (`git push origin feature/amazing-feature`)
-7. Open a Pull Request
+### Project Structure
 
-### Development Setup
-
-```bash
-# Clone your fork
-git clone https://github.com/YOUR_USERNAME/REPO_NAME.git
-cd REPO_NAME
-
-# Install dependencies
-npm install
-# or
-pip install -r requirements.txt
-
-# Run tests
-npm test
-# or
-pytest
 ```
+m-pal/
+├── __tests__/          # Test files
+├── dist/               # Compiled JavaScript
+├── *.ts                # Source TypeScript files
+├── package.json
+├── tsconfig.json
+└── README.md
+```
+
+### Adding a New Provider
+
+To add support for a new mobile money provider:
+
+1. Create a new TypeScript file (e.g., `NewProvider.ts`)
+2. Implement the provider class extending the base provider
+3. Add tests in `__tests__/`
+4. Update the README with documentation
+5. Export from `index.ts`
 
 ### Code Style
 
-- Follow the existing code style
-- Use meaningful variable and function names
-- Add comments for complex logic
-- Keep functions focused and small
+- Use TypeScript strict mode
+- Follow existing naming conventions
+- Add JSDoc comments for public APIs
+- Use Zod for runtime validation
 
-### Commit Messages
+## 🧪 Testing
 
-- Use the present tense ("Add feature" not "Added feature")
-- Use the imperative mood ("Move cursor to..." not "Moves cursor to...")
-- Reference issues and pull requests liberally after the first line
+```bash
+# Run all tests
+npm test
 
-## Code of Conduct
+# Run with coverage
+npm test -- --coverage
 
-This project adheres to a code of conduct. By participating, you are expected to uphold this code:
+# Run specific test file
+npm test -- __tests__/index.test.ts
+```
 
-- Be respectful and inclusive
-- Welcome newcomers
-- Accept constructive criticism gracefully
-- Focus on what's best for the community
+### Writing Tests
 
-## Questions?
+- Test both success and error cases
+- Mock external API calls
+- Validate TypeScript types
+- Test validation schemas
 
-Feel free to open an issue for questions or join discussions.
+## 📦 Submitting Changes
 
-Thank you for contributing!
+1. **Ensure tests pass**: `npm test`
+2. **Ensure TypeScript compiles**: `npm run lint`
+3. **Commit your changes** with clear messages
+4. **Push to your fork**
+5. **Open a Pull Request**
+
+### PR Checklist
+
+- [ ] Tests added/updated
+- [ ] Documentation updated
+- [ ] TypeScript compiles without errors
+- [ ] Code follows style guidelines
+- [ ] No breaking changes (or clearly documented)
+
+## 🐛 Bug Reports
+
+Please include:
+
+- Provider name (M-Pesa, MTN MoMo, Airtel Money)
+- Error message or unexpected behavior
+- Code snippet showing usage
+- Environment (Node version, OS)
+
+## 🎯 Feature Requests
+
+We especially welcome:
+
+- New mobile money providers
+- Additional countries/regions
+- Better error handling
+- Performance improvements
+- Documentation translations
+
+## 🏆 Recognition
+
+Contributors will be:
+
+- Listed in README.md
+- Mentioned in release notes
+- Added to our contributors page
+
+## 📄 License
+
+By contributing, you agree that your contributions will be licensed under the MIT License.
+
+---
+
+Made with ❤️ in Africa 🌍

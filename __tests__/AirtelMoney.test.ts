@@ -6,7 +6,8 @@ describe('AirtelMoney', () => {
   beforeEach(() => {
     airtel = new AirtelMoney({
       environment: 'sandbox',
-      apiKey: 'test-api-key',
+      clientId: 'test-client-id',
+      clientSecret: 'test-client-secret',
       callbackUrl: 'https://test.com/callback',
     });
   });
@@ -19,7 +20,8 @@ describe('AirtelMoney', () => {
     it('should initialize with production environment', () => {
       const prodAirtel = new AirtelMoney({
         environment: 'production',
-        apiKey: 'prod-api-key',
+        clientId: 'prod-client-id',
+        clientSecret: 'prod-client-secret',
         callbackUrl: 'https://prod.com/callback',
       });
       expect(prodAirtel).toBeDefined();
@@ -34,6 +36,8 @@ describe('AirtelMoney', () => {
           amount: 100,
           phone: '256123456789',
           reference: 'TEST-001',
+          description: 'Test payment',
+          currency: 'KES',
         })
       ).rejects.toBeDefined();
     });
@@ -45,6 +49,8 @@ describe('AirtelMoney', () => {
           amount: 100,
           phone: '123',
           reference: 'TEST-001',
+          description: 'Test payment',
+          currency: 'KES',
         })
       ).rejects.toThrow();
     });

@@ -1,14 +1,20 @@
 {
   "name": "m-pal",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "The unified SDK for African mobile money payments. M-Pesa, MTN MoMo, Airtel Money — one clean API.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
     "dev": "ts-node src/examples/stk-push.ts",
-    "test": "jest",
-    "lint": "tsc --noEmit && eslint . --ext .ts",
+    "test": "jest --passWithNoTests",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint . --ext .ts --fix",
+    "format": "prettier --write \"**/*.ts\"",
+    "format:check": "prettier --check \"**/*.ts\"",
+    "docs:generate": "typedoc --out docs src",
     "prepare": "npm run build"
   },
   "keywords": ["africa", "mpesa", "mtn-momo", "airtel-money", "fintech", "kenya", "payments", "mobile-money"],
@@ -33,15 +39,19 @@
   "dependencies": {
     "axios": "^1.8.4",
     "dotenv": "^16.4.7",
-    "p-queue": "^9.1.0",
+    "p-queue": "^8.1.0",
     "zod": "^4.3.6"
   },
   "devDependencies": {
-    "@types/jest": "^29.5.12",
-    "@types/node": "^22.5.0",
-    "jest": "^29.7.0",
-    "ts-jest": "^29.2.4",
+    "@types/jest": "^29.5.14",
+    "@types/node": "^25.5.0",
+    "@typescript-eslint/eslint-plugin": "^8.28.0",
+    "@typescript-eslint/parser": "^8.28.0",
+    "eslint": "^10.1.0",
+    "jest": "^30.3.0",
+    "prettier": "^3.5.3",
+    "ts-jest": "^29.3.0",
     "ts-node": "^10.9.2",
-    "typescript": "^5.5.4"
+    "typescript": "^5.8.2"
   }
 }
