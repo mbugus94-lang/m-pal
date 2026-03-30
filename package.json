@@ -42,7 +42,7 @@
     "axios": "^1.13.6",
     "dotenv": "^16.4.7",
     "p-queue": "^9.1.0",
-    "zod": "^3.25.76"
+    "zod": "^4.3.6"
   },
   "devDependencies": {
     "@types/jest": "^29.5.14",
