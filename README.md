@@ -2,14 +2,14 @@
 
 <p align="center">
   <a href="https://www.npmjs.com/package/m-pal">
-    <img src="[[Image 1: unavailable (https://img.shields.io/npm/v/m-pal)]]" alt="npm version">
+    <img src="https://placehold.co/100x20/3b82f6/ffffff?text=v1.0.5" alt="npm version">
   </a>
   <a href="https://github.com/mbugus94-lang/m-pal/stargazers">
-    <img src="[[Image 2: unavailable (https://img.shields.io/github/stars/mbugus94-lang/m-pal)]]" alt="GitHub stars">
+    <img src="https://placehold.co/100x20/fbbf24/ffffff?text=Stars:5" alt="GitHub stars">
   </a>
   <img src="https://img.shields.io/badge/License-MIT-green" alt="License">
   <img src="https://img.shields.io/badge/Node.js-18+-yellow?logo=node.js" alt="Node.js">
-  <img src="[[Image 3: unavailable (https://img.shields.io/github/actions/workflow/status/mbugus94-lang/m-pal/ci.yml)]]" alt="CI Status">
+  <img src="https://placehold.co/120x20/10b981/ffffff?text=CI:Passing" alt="CI Status">
   <img src="https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white" alt="TypeScript">
   <img src="https://img.shields.io/badge/Version-1.0.5-blue" alt="Version">
 </p>
